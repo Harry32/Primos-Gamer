@@ -3,9 +3,9 @@ from produtos.models import *
 
 admin.site.register(Categoria)
 admin.site.register(Avaliacao)
-admin.site.register(Carrinho)
-admin.site.register(Pedido)
-admin.site.register(Carrinho_produto)
+# admin.site.register(Carrinho)
+# admin.site.register(Pedido)
+# admin.site.register(Carrinho_Produto)
 
 
 @admin.register(TipoProduto)
@@ -23,11 +23,11 @@ class ProdutoAdmin(admin.ModelAdmin):
     
 
 
-@admin.register(Cliente)
-class ClienteAdmin(admin.ModelAdmin):
-    exlcude = ['ativo']
-    fieldsets = [(None, { 'fields': ['nome', 'cpf', 'email', 'telefone'] }),
-                 ('Endereço', { 'fields': ['endereco'] })]
+# @admin.register(Cliente)
+# class ClienteAdmin(admin.ModelAdmin):
+#     exlcude = ['ativo']
+#     fieldsets = [(None, { 'fields': ['nome', 'cpf', 'email', 'telefone'] }),
+#                  ('Endereço', { 'fields': ['endereco'] })]
     
     
 
