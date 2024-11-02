@@ -15,16 +15,15 @@ class Carrinho(models.Model):
 
 class Cliente(models.Model):
     id = models.BigAutoField(primary_key=True)
-    endereco = models.ForeignKey('Endereco', on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=11)
+    cpf = models.CharField(max_length=11, unique=True)
     email = models.CharField(max_length=50)
     telefone = models.CharField(max_length=11)
     data_cadastro = models.DateTimeField(default=timezone.now())
     ativo = models.BooleanField(default=True)
 
     def __str__(self) -> str:
-        return self.cpf + ' - ' + self.nome
+        return '{}{}{}.{}{}{}.{}{}{}-{}{}'.format(*self.cpf) + ' - ' + self.nome
     
     
     class Meta:
@@ -33,13 +32,15 @@ class Cliente(models.Model):
 
 class Endereco(models.Model):
     id = models.AutoField(primary_key=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='enderecos')
     estado = models.ForeignKey('Estado', on_delete=models.CASCADE)
     municipio = models.ForeignKey('Municipio', on_delete=models.CASCADE)
     cep = models.CharField(max_length=8)
     logradouro = models.CharField(max_length=100)
     numero = models.CharField(max_length=10)
-    complemento = models.CharField(max_length=100, null=True)
+    complemento = models.CharField(max_length=100, blank=True, null=True)
     bairro = models.CharField(max_length=50)
+    ativo = models.BooleanField(default=True)
 
     class Meta:
         db_table = "Endereco"
