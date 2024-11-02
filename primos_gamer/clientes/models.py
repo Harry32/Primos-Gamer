@@ -20,8 +20,8 @@ class Cliente(models.Model):
     cpf = models.CharField(max_length=11)
     email = models.CharField(max_length=50)
     telefone = models.CharField(max_length=11)
-    ativo = models.BooleanField(default=True)
     data_cadastro = models.DateTimeField(default=timezone.now())
+    ativo = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.cpf + ' - ' + self.nome
@@ -48,7 +48,7 @@ class Endereco(models.Model):
 class Estado(models.Model):
     id = models.SmallAutoField(primary_key=True)
     codigo = models.SmallIntegerField();
-    estado = models.CharField(max_length=50)
+    nome = models.CharField(max_length=50)
     sigla = models.CharField(max_length=2)
 
     def __str__(self) -> str:
