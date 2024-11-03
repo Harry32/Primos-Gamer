@@ -273,7 +273,7 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 ![admin-8](./imgs/django/admin-8.png "Página de cadastro do Django Admin com seções")
 
-## Actions
+### Actions
 Se voltarmos para a tela de listagem podemos ver um dropdown acima da lista de produtos chamado *Ações*. Ali podemos definir ações que serão executadas para todos os itens da listagem que marcarmos. Podemos ver que a única opção presente ali é a de remover o produto.
 
 Vamos começar removendo essa opção, pois não queremos que os produtos sejam deletados, queremos que sejam desativados. Para isso, só precisamos remover a permissão de remover itens nessa página.
