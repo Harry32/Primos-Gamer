@@ -1,4 +1,4 @@
-# Configurando o ambiente
+# Configurando o Ambiente
 Aqui vamos ver o que é necessário para configurar o ambiente linux para rodar a aplicação.
 
 ## Pasta de projetos
