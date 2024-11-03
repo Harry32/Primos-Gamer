@@ -48,7 +48,7 @@ class Endereco(models.Model):
 
 class Estado(models.Model):
     id = models.SmallAutoField(primary_key=True)
-    codigo = models.SmallIntegerField();
+    codigo = models.SmallIntegerField()
     nome = models.CharField(max_length=50)
     sigla = models.CharField(max_length=2)
 
