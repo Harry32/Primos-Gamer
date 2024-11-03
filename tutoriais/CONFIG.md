@@ -40,11 +40,11 @@ Agora vamos criar nosso novo branch que terá origem na develop. O comando será
 
 Para enviar o branch para o servidor basta executar o comando `git push`. Para pegar alterações feitas no por outra pessoa no branch em que você está agora execute `git pull`. Após fazer alterações você precisará mandar as mudanças para o servidor, o primeiro passo é marcar os arquivos para envio. Essa marcação é chamado de *staging*, para fazer isso execute `git add .`. Agora vamos criar um commit, que é a identificação da nossa mudança. Faça isso executando o comando `git commit -m <titulo>`. O parâmetro *-m* é obrigatório, ele diz que o valor após ele é o título do commit e essa informação é obrigatória. Não esqueça que o  título deve ser escrito entre aspas: `git commit -m "Título de exemplo"`.
 
-[!NOTE]
-Sempre que fizer algo funcional faça um commit e envie para o servidor com o comando **push** para garantir que fique salvo e que todos possam ver.
+> [!NOTE]
+> Sempre que fizer algo funcional faça um commit e envie para o servidor com o comando **push** para garantir que fique salvo e que todos possam ver.
 
-[!WARNING]
-Não esqueça de antes de dar um **push** para enviar seus commits, dar um **pull** para baixar quaisquer mudanças realizadas por outras pessoas. Caso haja mudanças para baixar o git não permitirá envar as mudanças. Caso você use o botão "Sincronizar" no VSCode, os dois comandos são feitos automaticamente.
+>[!WARNING]
+>Não esqueça de antes de dar um **push** para enviar seus commits, dar um **pull** para baixar quaisquer mudanças realizadas por outras pessoas. Caso haja mudanças para baixar o git não permitirá envar as mudanças. Caso você use o botão "Sincronizar" no VSCode, os dois comandos são feitos automaticamente.
 
 ## Visual Studio Code
 Para configurar o VSCode será necessário apenas instalar duas extensões: WSL e Python. Após instalar as duas você precisará abrir o projeto. Lembre que o projeto só estará acessível após abrir o linux no terminal. Primeiro será necessário abrir a janela remota que permite acesso ao código em outro sistema. No canto inferior esquerdo do seu VSCode terá um quadrado vermelho clique nele.
