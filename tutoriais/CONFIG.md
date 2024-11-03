@@ -1,4 +1,4 @@
-# Configurando o ambiente:
+# Configurando o ambiente
 Aqui vamos ver o que é necessário para configurar o ambiente linux para rodar a aplicação.
 
 ## Pasta de projetos
@@ -9,11 +9,11 @@ Como ainda não temos nada para acessar via Visual Studio Code, vamos executar o
 
 Para conseguir o link vá até a página do projeto e clique no botão verde escrito *<> Code* como mostra a imagem abaixo:
 
-![github-1](./imgs/github-1.png "Página principal do github")
+![github-1](./imgs/config/github-1.png "Página principal do github")
 
 Na janelinha flutuante que aparecer, certifique-se que a aba HTTPS está selecionada e copie o link.
 
-![github-2](./imgs/github-2.png "Janela de informações de Clone")
+![github-2](./imgs/config/github-2.png "Janela de informações de Clone")
 
 Depois basta executar o comando `git clone https://<link>` que o código será baixado. Lembre-se que todo código é baixado da branch **main**.
 
@@ -49,17 +49,20 @@ Para enviar o branch para o servidor basta executar o comando `git push`. Para p
 ## Visual Studio Code
 Para configurar o VSCode será necessário apenas instalar duas extensões: WSL e Python. Após instalar as duas você precisará abrir o projeto. Lembre que o projeto só estará acessível após abrir o linux no terminal. Primeiro será necessário abrir a janela remota que permite acesso ao código em outro sistema. No canto inferior esquerdo do seu VSCode terá um quadrado vermelho clique nele.
 
-![vscode-1](./imgs/vscode-1.png "Acesso remoto no VSCode")
+![vscode-1](./imgs/config/vscode-1.png "Acesso remoto no VSCode")
 
 E um dropdown irá aparecer no centro superior do VSCode perguntando a ação desejada. Selecione *Connect to WSL*.
 
-![vscode-2](./imgs/vscode-2.png "Conectar no WSL no VSCode")
+![vscode-2](./imgs/config/vscode-2.png "Conectar no WSL no VSCode")
 
 Agora, no canto inferior esquerdo você verá o nome WSL: Ubuntu. Agora vá em Arquivo e clique em Abrir Pasta. No centro superior você poderá escolher a pasta do projeto, mas se você prestar atenção verá que as pastas não parecem com as suas pastas do Windows. Essas são as pastas do seu linux.
 
-![vscode-3](./imgs/vscode-3.png "Seleção de pastas no VSCode")
+![vscode-3](./imgs/config/vscode-3.png "Seleção de pastas no VSCode")
 
 Procure a sua pasta de projeto e depois a pasta *Primos-Gamer* e depois a pasta *primos_gamer* e aperte o botão Ok. Agora você tem acesso ao projeto no VSCode.
+
+> [!IMPORTANT]
+> Antes de poder rodar o projeto é necessário instalar as dependências. [Veja como aqui](./DJANGO.md#instalando-dependências).
 
 ## Comandos Utilizados
 
@@ -70,6 +73,15 @@ apt-get update
 
 # Instala o VENV
 apt-get install python3-virtualenv
+```
+
+#### Comandos do VENV
+```bash
+# Cria um novo VENV
+python3 -m venv ./venvs/<nomeVENV>
+
+# Ativa um VENV
+source ../venvs/<nomeVENV>/bin/activate
 ```
 
 #### Comandos do Git
