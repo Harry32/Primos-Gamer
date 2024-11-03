@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'clientes.apps.ClientesConfig',
+    'pedidos.apps.PedidosConfig',
     'produtos.apps.ProdutosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
