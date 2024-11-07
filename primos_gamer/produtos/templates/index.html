@@ -1,0 +1,6 @@
+<h1>Primos Gamers</h1>
+<ul>
+    {% for categoria in categorias %}
+        <li><a href="/produto/{{ categoria.id }}">{{ categoria.nome }}</a></li>
+    {% endfor %}
+</ul>
