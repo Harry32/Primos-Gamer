@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from produtos.models import Produto
+from produtos.models import Produto, Categoria
 
-
-# def index(request):
-#     return HttpResponse(', '.join([p.nome for p in Produto.objects.order_by('data_cadastro')[:5]]))
 
 def list(request):
     context = {

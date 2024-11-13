@@ -30,3 +30,15 @@ Você deve ter percebido a existência de um arquivo abaixo do manage.py chamado
 
 >[!WARNING]
 >Não esqueça de estar dentro do VENV quando for instalar pacotes. Se tiver dúvida veja [como ativar o VENV aqui](./CONFIG.md#comandos-do-venv).
+
+
+## Comandos Utilizados
+
+#### Comandos de Migrations
+```bash
+# Cria o novo APP
+python manage.py startapp <nomeapp>
+
+# Instala dependências do projeto
+pip install -r requirements.txt
+```
