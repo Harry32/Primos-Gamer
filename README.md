@@ -8,8 +8,14 @@ Criei uma lista de documentos pra ajudar vocês a estudarem quando eu não puder
 - [Configurando o Ambiente](./tutoriais/CONFIG.md)
 Aqui vocês terão um tutorial para configurar o ambiente do projeto
 
-- [Utilizando o Django](./tutoriais/DJANGO.md)
-Aqui estão vários tutoriais sobre o django que vou incrementando conforme vou explicando coisas novas à vocês.
+- [Começando com Django](./tutoriais/STARTING_DJANGO.md)
+Aqui estão tutoriais sobre como começar com o django que vou incrementando conforme vou explicando coisas novas à vocês.
+
+- [Models](./tutoriais/DJANGO_MODELS.md)
+Aqui estão tutoriais sobre como utilizar o básico  dos models do django.
+
+- [Django Admin](./tutoriais/DJANGO_ADMIN.md)
+Aqui estão tutoriais sobre como utilizar o básico  do django admin.
 
 - [Exercicios](./tutoriais/EXERCICIOS.md)
 Aqui teremos uma lista de exercicios atualizadas pra vocês.

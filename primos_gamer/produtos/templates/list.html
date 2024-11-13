@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} - Produtos {% endblock %}
+
+{% block content %}
+    {% comment %} <un>
+        {% for produto in produtos %}
+            <li>{{ produto.nome }}</li>
+        {% endfor %}
+    </un> {% endcomment %}
+
+    {% comment %} {% if produtos %}
+    <un>
+        {% for produto in produtos %}
+            <li><a href="/produtos/{{ produto.id }}">{{ produto.nome }}</a></li>
+        {% endfor %}
+    </un>
+    {% else %}
+        <p>Não há produtros cadastrados</p>
+    {% endif %} {% endcomment %}
+
+    {% if produtos %}
+    <un>
+        {% for produto in produtos %}
+            <li><a href="{% url 'detail' produto.id %}">{{ produto.nome }}</a></li>
+        {% endfor %}
+    </un>   
+    {% else %}
+        <p>Não há produtros cadastrados</p>
+    {% endif %}
+{% endblock %}
