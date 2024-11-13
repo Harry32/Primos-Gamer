@@ -5,21 +5,21 @@ from produtos.models import Produto, Categoria
 
 def list(request):
     context = {
-        'produtos': Produto.objects.order_by('data_cadastro')[:5]
+        'categorias': Categoria.objects.all()
     }
 
     return render(request, 'list.html', context)
 
 
-def detail(request, id_produto):
+def detail(request, id_categoria):
     try:
         context = {
-            'produto': Produto.objects.get(id=id_produto)
+            'categoria': Categoria.objects.get(id=id_categoria)
         }
 
         return render(request, 'detail.html', context)
-    except Produto.DoesNotExist:
-        raise Http404("Produto não existe")
+    except Categoria.DoesNotExist:
+        raise Http404("Categoria não existe")
 
 def create(request):
     pass

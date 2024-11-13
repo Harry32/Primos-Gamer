@@ -139,4 +139,4 @@ Agora se salvarmos e dermos refresh na tela veremos os seguinte:
 
 ![view-2](./imgs/django/view-2.png "View com Categorias concatenadas")
 
-Podemos começar agora a criar telas mais complexas utilizando Templates.
+Podemos começar agora a criar telas mais complexas [utilizando Templates](./DJANGO_TEMPLATES.md).
