@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Primos Gamer{% block title %}{% endblock %}</title>
+    </head>
+
+    {% comment %} <body style="background-color:#181d27;"> {% endcomment %}
+    <body>
+        <div id="sidebar">
+            <ul>
+                <li><a href="">Home</a></li>
+                {% comment %} <li><a href="{% url 'produtos:index' %}">Produtos</a></li> {% endcomment %}
+            </ul>
+        </div>
+
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
