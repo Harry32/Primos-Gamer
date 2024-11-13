@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} - Categorias {% endblock %}
+
+{% block content %}
+    {% if categorias %}
+    <un>
+        {% for categoria in categorias %}
+            <li><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></li>
+        {% endfor %}
+    </un>   
+    {% else %}
+        <p>Não há categorias cadastradas</p>
+    {% endif %}
+{% endblock %}

@@ -1,20 +1,25 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from produtos.models import Categoria
+from django.http import HttpResponse, Http404
+from produtos.models import Produto, Categoria
 
 
-def index(request):
-    lista_categorias = Categoria.objects.all()
+def list(request):
     context = {
-        'categorias': lista_categorias
+        'categorias': Categoria.objects.all()
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'list.html', context)
+
 
 def detail(request, id_categoria):
-    categoria = Categoria.objects.get(id=id_categoria)
-    context = {
-        'categoria': categoria
-    }
+    try:
+        context = {
+            'categoria': Categoria.objects.get(id=id_categoria)
+        }
 
-    return render(request, 'detail.html', context)
+        return render(request, 'detail.html', context)
+    except Categoria.DoesNotExist:
+        raise Http404("Categoria não existe")
+
+def create(request):
+    pass

@@ -1,0 +1,12 @@
+body {
+    background-color: #181d27;
+    color: #dee2e6;
+}
+
+p, span {
+    color: #dee2e6;
+}
+
+a {
+    color: rgba(139,185,254,1)
+}
