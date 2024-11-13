@@ -20,5 +20,8 @@ Aqui estão tutoriais sobre como utilizar o básico  do django admin.
 - [Views](./tutoriais/DJANGO_VIEWS.md)
 Aqui estão tutoriais sobre como utilizar o básico de views.
 
+- [Templates](./tutoriais/DJANGO_TEMPLATES.md)
+Aqui estão tutoriais sobre como utilizar o básico de templates.
+
 - [Exercicios](./tutoriais/EXERCICIOS.md)
 Aqui teremos uma lista de exercicios atualizadas pra vocês.
