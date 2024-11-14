@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} - {{ categoria.nome }} {% endblock %}
+
+{% block content %}
+    <h1>Categoria {{ categoria.id }}</h1>
+    <p>
+        <span>{{ categoria.nome }}</span><br/>
+        {% comment %} <span>{{ produto.modelo }}</span><br/>
+        <span>{{ produto.preco }}</span><br/>
+        <span>{{ produto.desconto }}</span><br/> {% endcomment %}
+    </p>
+{% endblock %}

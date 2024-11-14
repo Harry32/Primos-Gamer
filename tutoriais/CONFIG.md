@@ -62,7 +62,7 @@ Agora, no canto inferior esquerdo você verá o nome WSL: Ubuntu. Agora vá em A
 Procure a sua pasta de projeto e depois a pasta *Primos-Gamer* e depois a pasta *primos_gamer* e aperte o botão Ok. Agora você tem acesso ao projeto no VSCode.
 
 > [!IMPORTANT]
-> Antes de poder rodar o projeto é necessário instalar as dependências. [Veja como aqui](./DJANGO.md#instalando-dependências).
+> Antes de poder rodar o projeto é necessário instalar as dependências. [Veja como aqui](./STARTING_DJANGO.md#instalando-dependências).
 
 ## Comandos Utilizados
 
