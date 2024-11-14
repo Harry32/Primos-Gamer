@@ -3,6 +3,11 @@
 {% block title %} - Categorias {% endblock %}
 
 {% block content %}
+
+    {% if mensagem %}
+    <h4>{{ mensagem }}</h4>
+    {% endif %}
+
     {% if categorias %}
     <un>
         {% for categoria in categorias %}
@@ -12,4 +17,9 @@
     {% else %}
         <p>Não há categorias cadastradas</p>
     {% endif %}
+
+    <p><a href="{% url 'create' %}"> Nova Categoria </a></p>
+
 {% endblock %}
+
+
