@@ -6,16 +6,23 @@ from .forms import CategoriaForm
 
 
 def list(request):
-    mensagem = None
 
-    acao = request.GET.get('acao', None)
+    mensagem = None 
 
-    if acao == "POST":
-        mensagem = "Categoria inserida com sucesso"
+    action = request.GET.get('acao', None) 
+    
+    if action == 'POST':
+        mensagem = "Categoria criada com sucesso"
+
+    elif action == 'PUT':
+        mensagem = "Categoria alterada com sucesso"   
+
     
     context = {
         'categorias': Categoria.objects.all(),
-        'mensagem': mensagem
+        "mensagem": mensagem 
+        
+
     }
 
     return render(request, 'list.html', context)
