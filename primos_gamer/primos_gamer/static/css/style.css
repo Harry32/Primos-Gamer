@@ -7,6 +7,20 @@ p, span {
     color: #dee2e6;
 }
 
+.div-class ~ p {
+   margin: 50px 50px; 
+   /* padding: 50px 50px; */
+}
+
 a {
     color: rgba(139,185,254,1)
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 2px 5px;
 }

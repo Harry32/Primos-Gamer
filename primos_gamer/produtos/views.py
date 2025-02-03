@@ -1,71 +1,178 @@
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.urls import reverse
+from django.views.generic import TemplateView
 from .models import Categoria
 from .forms import CategoriaForm
 
 
-def list(request):
+class GetCategoriaView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id_categoria')
 
-    mensagem = None 
-
-    action = request.GET.get('acao', None) 
+        if not id:
+            return self.list(request)
+        else:
+            return self.detail(request, id)
     
-    if action == 'POST':
-        mensagem = "Categoria criada com sucesso"
+    def list(self, request):
 
-    elif action == 'PUT':
-        mensagem = "Categoria alterada com sucesso"   
+        mensagem = None 
 
-    
-    context = {
-        'categorias': Categoria.objects.all(),
-        "mensagem": mensagem 
+        action = request.GET.get('acao', None) 
         
+        if action == 'POST':
+            mensagem = "Categoria criada com sucesso"
 
-    }
+        elif action == 'PUT':
+            mensagem = "Categoria alterada com sucesso"
+        
+        elif action == 'DELETE':
+            mensagem = "Categoria excluída com sucesso"
 
-    return render(request, 'list.html', context)
-
-
-def detail(request, id_categoria):
-    try:
+        
         context = {
-            'categoria': Categoria.objects.get(id=id_categoria)
+            'categorias': Categoria.objects.all(),
+            "mensagem": mensagem 
         }
 
-        return render(request, 'detail.html', context)
-    except Categoria.DoesNotExist:
-        raise Http404("Categoria não existe")
+        return render(request, 'list.html', context)
+    
+    def detail(self, request, id_categoria):
+        try:
+            context = {
+                'categoria': Categoria.objects.get(id=id_categoria)
+            }
 
-def create(request):
-    context = {}
-    if request.method == "POST":
-        form = CategoriaForm(request.POST)
+            return render(request, 'detail.html', context)
+        except Categoria.DoesNotExist:
+            raise Http404("Categoria não existe")
 
+
+class CategoriaView(TemplateView):
+    form_class = CategoriaForm
+    template_name = "categoria_form.html"
+    
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        id = kwargs.get('id_categoria')
+
+        if not id:
+            context = {
+                "formulario": self.form_class(),
+                "destino": "create"
+            }
+        else:
+            context = {
+                "formulario": self.form_class(None, instance=Categoria.objects.get(id=id)),
+                "destino": "update"
+            }
+
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = None
+        acao = 'POST'
+
+        id = kwargs.get('id_categoria')
+        
+        if not id:
+            form = self.form_class(request.POST)
+        else:
+            try:
+                form = self.form_class(request.POST, instance=Categoria.objects.get(id=id))
+                acao = 'PUT'
+            except Categoria.DoesNotExist:
+                raise Http404("Categoria não existe")
+            
         if form.is_valid():
             form.save()
-            return redirect(reverse('list') + f"?acao={request.method}")
-    else:
-        context["formulario"] = CategoriaForm()
+            return redirect(reverse('list') + f"?acao={acao}")
+
+
+class DeleteCategoriaView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id_categoria')
+
+        try:
+            context = {
+                'categoria': Categoria.objects.get(id=id)
+            }
+
+            return render(request, 'confirmacao.html', context)
+        except Categoria.DoesNotExist:
+            raise Http404("Categoria não existe")
+
+    def post(self, request, *args, **kwargs):
+        id = kwargs.get('id_categoria')
+
+        try:
+            Categoria.objects.get(id=id).delete()
+
+            return redirect(reverse('list') + f"?acao=DELETE")
+        except Categoria.DoesNotExist:
+            raise Http404("Categoria não existe")
+
+# def list(request):
+
+#     mensagem = None 
+
+#     action = request.GET.get('acao', None) 
     
-    return render(request, 'create.html', context)
+#     if action == 'POST':
+#         mensagem = "Categoria criada com sucesso"
 
-def update(request, id_categoria):
-    context = {}
+#     elif action == 'PUT':
+#         mensagem = "Categoria alterada com sucesso"
 
-    try:
-        if request.method == "POST":
-            form = CategoriaForm(request.POST)
+    
+#     context = {
+#         'categorias': Categoria.objects.all(),
+#         "mensagem": mensagem 
+#     }
 
-            if form.is_valid():
-                form.save()
-                return redirect(reverse('list') + f"?acao={request.method}")
-        else:
-            form = CategoriaForm(None, instance=Categoria.objects.get(id=id_categoria))
+#     return render(request, 'list.html', context)
 
-        context["formulario"] = form
 
-        return render(request, 'update.html', context)
-    except Categoria.DoesNotExist:
-        raise Http404("Categoria não existe")
+# def detail(request, id_categoria):
+#     try:
+#         context = {
+#             'categoria': Categoria.objects.get(id=id_categoria)
+#         }
+
+#         return render(request, 'detail.html', context)
+#     except Categoria.DoesNotExist:
+#         raise Http404("Categoria não existe")
+
+# def create(request):
+#     context = {}
+#     if request.method == "POST":
+#         form = CategoriaForm(request.POST)
+
+#         if form.is_valid():
+#             form.save()
+#             return redirect(reverse('list') + f"?acao={request.method}")
+#     else:
+#         context["formulario"] = CategoriaForm()
+    
+#     return render(request, 'create.html', context)
+
+# def update(request, id_categoria):
+#     context = {}
+
+#     try:
+#         if request.method == "POST":
+#             form = CategoriaForm(request.POST)
+
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect(reverse('list') + f"?acao={request.method}")
+#         else:
+#             form = CategoriaForm(None, instance=Categoria.objects.get(id=id_categoria))
+
+#         context["formulario"] = form
+
+#         return render(request, 'update.html', context)
+#     except Categoria.DoesNotExist:
+#         raise Http404("Categoria não existe")

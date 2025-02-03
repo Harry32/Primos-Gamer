@@ -6,12 +6,27 @@
     {% if mensagem %}
         <h4>{{ mensagem }}</h4>
     {% endif %}
+
     {% if categorias %}
-    <un>
-        {% for categoria in categorias %}
-            <li><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></li>
-        {% endfor %}
-    </un>   
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+                <tr>
+                    <td>{{categoria.id}}</td>
+                    <td><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></td>
+                    <td><a href="{% url 'update' categoria.id %}">Editar</a></td>
+                    <td><a href="{% url 'delete' categoria.id %}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
     {% else %}
         <p>Não há categorias cadastradas</p>
     {% endif %}

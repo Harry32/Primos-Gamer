@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} - Nova Categoria {% endblock %}
+
+{% block content %}
+    {% if destino == "create" %}
+        <form action="{% url destino %}" method="post">
+    {% else %}
+        <form action="{% url destino formulario.instance.id %}" method="post">
+    {% endif %}
+
+        {% csrf_token %}
+        {{ formulario }}
+        <br/>
+        <input type="submit" value="Salvar">
+    </form>
+{% endblock %}
