@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} - Excluir Tipo de Produto  {% endblock %}
+ 
+{% block content %}
+    <p>Deseja realmente excluir o Tipo de Produto {{ tipo_produto.nome }}?</p>
+    <form action="{% url 'delete_tipo_produto' tipo_produto.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Sim</button>
+        <button type="button" onclick="window.location.href='{% url 'list_tipo_produto' %}'">Não</button>
+    </form>
+{% endblock %}   

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} - Excluir Categoria  {% endblock %}
+ 
+{% block content %}
+    <p>Deseja realmente excluir a categoria {{ categoria.nome }}?</p>
+    <form action="{% url 'delete' categoria.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Sim</button>
+        <button type="button" onclick="window.location.href='{% url 'list' %}'">Não</button>
+    </form>
+{% endblock %}    

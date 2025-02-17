@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} - Tipo Produto {% endblock %}
+
+{% block content %}
+    {% if mensagem %}
+        <h4>{{ mensagem }}</h4>
+    {% endif %}
+    {% if tipos_produtos %}
+    <un>
+        <table border="1" width="400">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tipo in tipos_produtos %}
+                <tr>
+                    <td>{{ tipo.id }}</td>
+                    <td>
+                    <a href="{% url 'detail_tipo_produto' tipo.id %}">{{ tipo.nome }}</a>
+                    </td>
+                    <td align="center">
+                        <a href="{% url 'update_tipo_produto' tipo.id %}">Alterar</a> |
+                        <a href="{% url 'delete_tipo_produto' tipo.id %}">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </un>
+    {% else %}
+        <p>Não há tipos produtos cadastrados</p>
+    {% endif %}
+
+    <p><a href="{% url 'create_tipo_produto' %}">Novo Tipo Produto</a></p>
+{% endblock %}

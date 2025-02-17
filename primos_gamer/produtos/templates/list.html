@@ -8,9 +8,27 @@
     {% endif %}
     {% if categorias %}
     <un>
-        {% for categoria in categorias %}
-            <li><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></li>
-        {% endfor %}
+        <table border="1" width="400">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categoria in categorias %}
+                <tr>
+                    <td>{{ categoria.id }}</td>
+                    <td><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></td>
+                    <td align="center">
+                        <a href="{% url 'update' categoria.id %}">Alterar</a>  |
+                        <a href="{% url 'delete' categoria.id %}">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </un>   
     {% else %}
         <p>Não há categorias cadastradas</p>

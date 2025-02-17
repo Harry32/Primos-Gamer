@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} - Editar Tipo Produto {{ formulario.instance.nome }} {% endblock %}
+
+{% block content %}
+    <form action="{% url 'update_tipo_produto' formulario.instance.id %}" method="post">
+        {% csrf_token %}
+        {{ formulario }}
+        <br/>
+        <input type="submit" value="Salvar">
+    </form>
+{% endblock %} 
