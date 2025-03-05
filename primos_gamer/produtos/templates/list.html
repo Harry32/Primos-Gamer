@@ -6,30 +6,84 @@
     {% if mensagem %}
         <h4>{{ mensagem }}</h4>
     {% endif %}
-
-    {% if categorias %}
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th colspan="2">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for categoria in categorias %}
-                <tr>
-                    <td>{{categoria.id}}</td>
-                    <td><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></td>
-                    <td><a href="{% url 'update' categoria.id %}">Editar</a></td>
-                    <td><a href="{% url 'delete' categoria.id %}">Excluir</a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>   
-    {% else %}
-        <p>Não há categorias cadastradas</p>
-    {% endif %}
-
-    <p><a href="{% url 'create' %}">Nova Categoria</a></p>
+    <div class="card">
+        <div class="card-datatable table-responsive">
+            <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+                <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0">
+                    <div class="me-5 ms-n2">
+                        <div class="dataTables_filter">
+                            <label>
+                                <input class="form-control form-control-sm" placeholder="Buscar" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
+                        <div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0">
+                            <div class="dataTables_length my-0" id="DataTables_Table_0_length">
+                                <label data-dashlane-label="true">
+                                    <select class="form-select form-select-sm">
+                                        <option value="7">7</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="70">70</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="dt-buttons btn-group flex-wrap">
+                                <a href="{% url 'create' %}">
+                                    <button class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light" type="button">
+                                        <span>
+                                            <i class="ri-add-line me-0 me-sm-1"></i>
+                                            <span class="d-none d-sm-inline-block">Nova Categoria</span>
+                                        </span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if categorias %}
+                    <table class="datatables-category-list table dataTable no-footer dtr-column">
+                        <thead>
+                            <tr>
+                                <th class="sorting sorting_desc">Id</th>
+                                <th class="text-nowrap text-sm-start sorting">Nome</th>
+                                <th class="text-end sorting_disabled">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for categoria in categorias %}
+                                <tr>
+                                    <td>
+                                        <div class="text-sm-start pe-3">
+                                            {{categoria.id}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column align-items-start">
+                                            <span class="text-heading fw-medium text-wrap"><a href="{% url 'detail' categoria.id %}">{{ categoria.nome }}</a></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-sm-end justify-content-sm-end">
+                                            <a href="{% url 'update' categoria.id %}">
+                                                <i class="ri-edit-box-line ri-22px"></i>
+                                            </a>
+                                            <a href="{% url 'delete' categoria.id %}">
+                                                <i class="ri-delete-bin-6-line ri-22px"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>Não há categorias cadastradas</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

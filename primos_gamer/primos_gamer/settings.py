@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'menu_tags': 'primos_gamer.templatetags.menu_tags'
+            }
         },
     },
 ]
@@ -124,6 +127,9 @@ STATIC_URL = '/static/' #os.path.join(BASE_DIR, "primos_gamer/static/")
 STATICFILES_DIRS = [
     BASE_DIR / "primos_gamer/static"
 ]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "primos_gamer/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

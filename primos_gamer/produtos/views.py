@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic import TemplateView
-from .models import Categoria
+from .models import Categoria, Produto
 from .forms import CategoriaForm
 
 
@@ -51,7 +51,7 @@ class GetCategoriaView(TemplateView):
 
 class CategoriaView(TemplateView):
     form_class = CategoriaForm
-    template_name = "categoria_form.html"
+    template_name = "form.html"
     
     def get(self, request, *args, **kwargs):
         context = {}
@@ -114,65 +114,30 @@ class DeleteCategoriaView(TemplateView):
         except Categoria.DoesNotExist:
             raise Http404("Categoria não existe")
 
-# def list(request):
+class ProdutoView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id_produto')
 
-#     mensagem = None 
-
-#     action = request.GET.get('acao', None) 
+        if not id:
+            return self.list(request)
+        else:
+            return self.detail(request, id)
     
-#     if action == 'POST':
-#         mensagem = "Categoria criada com sucesso"
+    def list(self, request):
+        action = request.GET.get('acao', None) 
+        
+        context = {
+            'produtos': Produto.objects.all(),
+        }
 
-#     elif action == 'PUT':
-#         mensagem = "Categoria alterada com sucesso"
-
+        return render(request, 'list_produto.html', context)
     
-#     context = {
-#         'categorias': Categoria.objects.all(),
-#         "mensagem": mensagem 
-#     }
+    def detail(self, request, id_produto):
+        try:
+            context = {
+                'produto': Produto.objects.get(id=id_produto)
+            }
 
-#     return render(request, 'list.html', context)
-
-
-# def detail(request, id_categoria):
-#     try:
-#         context = {
-#             'categoria': Categoria.objects.get(id=id_categoria)
-#         }
-
-#         return render(request, 'detail.html', context)
-#     except Categoria.DoesNotExist:
-#         raise Http404("Categoria não existe")
-
-# def create(request):
-#     context = {}
-#     if request.method == "POST":
-#         form = CategoriaForm(request.POST)
-
-#         if form.is_valid():
-#             form.save()
-#             return redirect(reverse('list') + f"?acao={request.method}")
-#     else:
-#         context["formulario"] = CategoriaForm()
-    
-#     return render(request, 'create.html', context)
-
-# def update(request, id_categoria):
-#     context = {}
-
-#     try:
-#         if request.method == "POST":
-#             form = CategoriaForm(request.POST)
-
-#             if form.is_valid():
-#                 form.save()
-#                 return redirect(reverse('list') + f"?acao={request.method}")
-#         else:
-#             form = CategoriaForm(None, instance=Categoria.objects.get(id=id_categoria))
-
-#         context["formulario"] = form
-
-#         return render(request, 'update.html', context)
-#     except Categoria.DoesNotExist:
-#         raise Http404("Categoria não existe")
+            return render(request, 'detail.html', context)
+        except Categoria.DoesNotExist:
+            raise Http404("Categoria não existe")

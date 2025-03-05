@@ -1,0 +1,45 @@
+{% load i18n %}
+
+<nav id="menu-superior" class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme">
+    <div id="navbar-collapse" class="navbar-nav-right d-flex align-items-center">
+        <div class="navbar-nav align-items-center">
+            <div class="nav-item navbar-search-wrapper mb-0">
+                <a class="nav-item nav-link search-toggler fw-normal px-0" href="javascript:void(0);">
+                    <i class="ri-search-line ri-22px scaleX-n1-rtl me-1_5"></i>
+                    <span class="d-none d-md-inline-block text-muted ms-1_5">Buscar</span>
+                </a>
+            </div>
+        </div>
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <li class="nav-item dropdown-style-switcher dropdown">
+                <a href="javascript:void(0);" class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow waves-effect waves-light">
+                    <i class="ri-22px ri-moon-clear-line"></i>
+                </a>
+            </li>
+            <li class="nav-item dropdown-notifications me-4 me-xl-1">
+                <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow waves-effect waves-light" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    <i class="ri-notification-2-line ri-22px"></i>
+                    <span class="position-absolute top-0 start-50 translate-middle-y badge badge-dot bg-danger mt-2 border"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-search-wrapper search-input-wrapper d-none">
+        <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+            <input type="text" class="form-control search-input container-xxl border-0 tt-input" placeholder="Search..." aria-label="Search..." autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" data-dashlane-rid="1d456194ad291d06">
+            <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Inter&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 15px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre>
+            <div class="tt-menu navbar-search-suggestion ps" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+                <div class="tt-dataset tt-dataset-pages"></div>
+                <div class="tt-dataset tt-dataset-files"></div>
+                <div class="tt-dataset tt-dataset-members"></div>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                </div>
+                <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                </div>
+            </div>
+        </span>
+        <i class="ri-close-fill search-toggler cursor-pointer"></i>
+    </div>
+</nav>
