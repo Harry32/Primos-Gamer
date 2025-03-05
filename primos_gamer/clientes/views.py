@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
 from django.views.generic import TemplateView
+from produtos.models import Produto
 
 class CarrinhoView(TemplateView):
     def get(self, request, *args, **kwargs):
@@ -14,12 +15,20 @@ class CarrinhoView(TemplateView):
                 "total": 0,
                 "produtos": []
             }
+        
+        for p in carrinho["produtos"]:
+                produto = Produto.objects.get(id=p["id"])
+
+                p["foto"] = produto.foto
+                p["preco"] = produto.preco
+                p["nome"] = produto.nome
+                p["tipo"] = produto.tipo.nome
 
         context = {
             "carrinho": carrinho
         }
 
-        return render(request, 'carrinho.html')
+        return render(request, 'carrinho.html', context)
     
     def post(self, request, *args, **kwargs):
         carrinho = request.session.get("carrinho")
@@ -32,20 +41,7 @@ class CarrinhoView(TemplateView):
                 "produtos": []
             }
 
-        if request.POST:
-            id = int(request.POST["id"])
-            existe = False
-
-            for p in carrinho["produtos"]:
-                if p["id"] == id:
-                    p["quantidade"] += 1
-                    existe = True
-
-            if not existe:
-                carrinho["produtos"].append({
-                    "id": id,
-                    "quantidade": 1
-                })
+        # Tarefa 6: Implemente seu código aqui.
 
         request.session["carrinho"] = carrinho
 
@@ -65,6 +61,8 @@ class GerirCarrinhoView(TemplateView):
                 "total": 0,
                 "produtos": []
             }
+
+        # Tarefa 18: Implemente seu código aqui.
         
         request.session["carrinho"] = carrinho
 
