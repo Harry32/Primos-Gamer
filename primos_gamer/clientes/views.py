@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import Http404
 from django.views.generic import TemplateView
 from produtos.models import Produto
+from decimal import Decimal
 
 class CarrinhoView(TemplateView):
     def get(self, request, *args, **kwargs):
@@ -10,21 +11,24 @@ class CarrinhoView(TemplateView):
 
         if not carrinho:
             carrinho = {
-                "subtotal": 0,
-                "desconto": 0,
-                "total": 0,
+                "subtotal": Decimal(0.0),
+                "desconto": Decimal(0.0),
+                "total": Decimal(0.0),
                 "produtos": []
             }
         
+        carrinho["subtotal"] =Decimal(0.0)
+        carrinho["total"] = Decimal(0.0)
+
         for p in carrinho["produtos"]:
-                produto = Produto.objects.get(id=p["id"])
+            produto = Produto.objects.get(id=p["id"])
 
-                p["foto"] = produto.foto
-                p["preco"] = produto.preco
-                p["nome"] = produto.nome
-                p["tipo"] = produto.tipo.nome
+            p["foto"] = produto.foto
+            p["preco"] = produto.preco
+            p["nome"] = produto.nome
+            p["tipo"] = produto.tipo.nome
 
-                carrinho["subtotal"] += p["preco"] * p["quantidade"]
+            carrinho["subtotal"] += p["preco"] * p["quantidade"]
 
         carrinho["total"] = carrinho["subtotal"] - carrinho["desconto"]
         
@@ -39,9 +43,9 @@ class CarrinhoView(TemplateView):
 
         if not carrinho:
             carrinho = {
-                "subtotal": 0,
-                "desconto": 0,
-                "total": 0,
+                "subtotal": Decimal(0.0),
+                "desconto": Decimal(0.0),
+                "total": Decimal(0.0),
                 "produtos": []
             }
 
@@ -73,9 +77,9 @@ class GerirCarrinhoView(TemplateView):
 
         if not carrinho:
             carrinho = {
-                "subtotal": 0,
-                "desconto": 0,
-                "total": 0,
+                "subtotal": Decimal(0.0),
+                "desconto": Decimal(0.0),
+                "total": Decimal(0.0),
                 "produtos": []
             }
 
