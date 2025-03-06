@@ -11,14 +11,14 @@ class CarrinhoView(TemplateView):
 
         if not carrinho:
             carrinho = {
-                "subtotal": Decimal(0.0),
-                "desconto": Decimal(0.0),
-                "total": Decimal(0.0),
+                "subtotal": 0.0,
+                "desconto": 0.0,
+                "total": 0.0,
                 "produtos": []
             }
         
-        carrinho["subtotal"] =Decimal(0.0)
-        carrinho["total"] = Decimal(0.0)
+        carrinho["subtotal"] = 0.0
+        carrinho["total"] = 0.0
 
         for p in carrinho["produtos"]:
             produto = Produto.objects.get(id=p["id"])
@@ -28,7 +28,7 @@ class CarrinhoView(TemplateView):
             p["nome"] = produto.nome
             p["tipo"] = produto.tipo.nome
 
-            carrinho["subtotal"] += p["preco"] * p["quantidade"]
+            carrinho["subtotal"] += float(p["preco"]) * p["quantidade"]
 
         carrinho["total"] = carrinho["subtotal"] - carrinho["desconto"]
         
@@ -40,30 +40,36 @@ class CarrinhoView(TemplateView):
     
     def post(self, request, *args, **kwargs):
         carrinho = request.session.get("carrinho")
+        id = int(request.POST["id"])
+        produto = Produto.objects.get(id=id)
+
 
         if not carrinho:
             carrinho = {
-                "subtotal": Decimal(0.0),
-                "desconto": Decimal(0.0),
-                "total": Decimal(0.0),
+                "subtotal": 0.0,
+                "desconto": 0.0,
+                "total": 0.0,
                 "produtos": []
             }
 
-        if request.POST:
-            id = int(request.POST["id"])
-            existe = False
 
-            for p in carrinho["produtos"]:
-                if p["id"] == id:
-                    p["quantidade"] += 1
-                    existe = True
+        if id in [p['id'] for p in carrinho['produtos']]:
+            for p in carrinho['produtos']:
+                if p['id'] == id:
+                    p['quantidade'] += 1
+                carrinho['subtotal'] += p['quantidade'] * float(produto.preco)
+        else:
+            novo_produto = {
+                "id": id,
+                "quantidade": 1
+            }
 
-            if not existe:
-                carrinho["produtos"].append({
-                    "id": id,
-                    "quantidade": 1
-                })
-
+            carrinho['produtos'].append(novo_produto)
+            carrinho['subtotal'] += novo_produto['quantidade'] * float(produto.preco)
+ 
+    
+        carrinho['total'] = carrinho['subtotal'] - carrinho['desconto'] 
+        
         request.session["carrinho"] = carrinho
 
         return redirect(reverse('produto_list'))
@@ -77,9 +83,9 @@ class GerirCarrinhoView(TemplateView):
 
         if not carrinho:
             carrinho = {
-                "subtotal": Decimal(0.0),
-                "desconto": Decimal(0.0),
-                "total": Decimal(0.0),
+                "subtotal": 0.0,
+                "desconto": 0.0,
+                "total": 0.0,
                 "produtos": []
             }
 
