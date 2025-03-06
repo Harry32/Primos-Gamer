@@ -69,7 +69,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'libraries': {
-                'menu_tags': 'primos_gamer.templatetags.menu_tags'
+                'menu_tags': 'primos_gamer.templatetags.menu_tags',
+                'operation_tags': 'primos_gamer.templatetags.operation_tags'
             }
         },
     },

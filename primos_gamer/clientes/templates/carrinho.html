@@ -3,6 +3,7 @@
 {% block title %} - Carrinho {% endblock %}
 
 {% block content %}
+    {% load operation_tags %}
     <div class="row">
         <div class="col-12 col-lg-8">
             <div class="card mb-6">
@@ -21,175 +22,50 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex justify-content-start align-items-center product-name">
-                                            <div class="avatar-wrapper me-3">
-                                                <div class="avatar avatar-sm rounded-2 bg-label-secondary">
-                                                    <img src="https://demos.themeselection.com/materio-html-django-admin-template/demo-1/static/img/products/woodenchair.png" alt="product-Wooden Chair" class="rounded-2">
+                                {% for produto in carrinho.produtos %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex justify-content-start align-items-center product-name">
+                                                <div class="avatar-wrapper me-3">
+                                                    <div class="avatar avatar-sm rounded-2 bg-label-secondary">
+                                                        <img src="{{ produto.foto.url }}" alt="product-Wooden Chair" class="rounded-2">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-column">
+                                                    <span class="text-nowrap text-heading fw-medium">{{ produto.nome }}</span>
+                                                    <small class="text-truncate d-none d-sm-block">{{ produto.tipo }}</small>
                                                 </div>
                                             </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="text-nowrap text-heading fw-medium">Wooden Chair</span>
-                                                <small class="text-truncate d-none d-sm-block">Material: Wooden</small>
+                                        </td>
+                                        <td>
+                                            <span>R${{ produto.preco }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-nowrap">
+                                                <form action="{% url 'gerir_carrinho' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id" value="1"/>
+                                                    <input type="hidden" name="operacao" value="+"/>
+                                                    <button type="submit" class="btn btn-xs btn-icon btn-label-success waves-effect waves-light">
+                                                        <span class="tf-icons ri-add-line ri-22px"></span>
+                                                    </button>
+                                                </form>
+                                                <span class="px-1">{{ produto.quantidade }}</span>
+                                                <form action="{% url 'gerir_carrinho' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id" value="1"/>
+                                                    <input type="hidden" name="operacao" value="-"/>
+                                                    <button type="submit" class="btn btn-xs btn-icon btn-label-danger waves-effect waves-light">
+                                                        <span class="tf-icons ri-subtract-line ri-22px"></span>
+                                                    </button>
+                                                </form>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>R$841</span>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-nowrap">
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="1"/>
-                                                <input type="hidden" name="operacao" value="+"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-success waves-effect waves-light">
-                                                    <span class="tf-icons ri-add-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                            <span class="px-1">2</span>
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="1"/>
-                                                <input type="hidden" name="operacao" value="-"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-danger waves-effect waves-light">
-                                                    <span class="tf-icons ri-subtract-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>R$1682</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex justify-content-start align-items-center product-name">
-                                            <div class="avatar-wrapper me-3">
-                                                <div class="avatar avatar-sm rounded-2 bg-label-secondary">
-                                                    <img src="https://demos.themeselection.com/materio-html-django-admin-template/demo-1/static/img/products/oneplus.png" alt="product-Wooden Chair" class="rounded-2">
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="text-nowrap text-heading fw-medium">Oneplus 10</span>
-                                                <small class="text-truncate d-none d-sm-block">Storage:128gb</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>R$896</span>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-nowrap">
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="2"/>
-                                                <input type="hidden" name="operacao" value="+"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-success waves-effect waves-light">
-                                                    <span class="tf-icons ri-add-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                            <span class="px-1">3</span>
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="2"/>
-                                                <input type="hidden" name="operacao" value="-"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-danger waves-effect waves-light">
-                                                    <span class="tf-icons ri-subtract-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>$2688</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex justify-content-start align-items-center product-name">
-                                            <div class="avatar-wrapper me-3">
-                                                <div class="avatar avatar-sm rounded-2 bg-label-secondary">
-                                                    <img src="https://demos.themeselection.com/materio-html-django-admin-template/demo-1/static/img/products/nikejordan.png" alt="product-Wooden Chair" class="rounded-2">
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="text-nowrap text-heading fw-medium">Nike Jordan</span>
-                                                <small class="text-truncate d-none d-sm-block">Size:8UK</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>$392</span>
-                                    </td>
-                                    <td> 
-                                        <div class="d-flex flex-nowrap">
-                                            {% comment %}  pb-5 pt-4 {% endcomment %}
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="3"/>
-                                                <input type="hidden" name="operacao" value="+"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-success waves-effect waves-light">
-                                                    <span class="tf-icons ri-add-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                            <span class="px-1">1</span>
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="3"/>
-                                                <input type="hidden" name="operacao" value="-"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-danger waves-effect waves-light">
-                                                    <span class="tf-icons ri-subtract-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>$392</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex justify-content-start align-items-center product-name">
-                                            <div class="avatar-wrapper me-3">
-                                                <div class="avatar avatar-sm rounded-2 bg-label-secondary">
-                                                    <img src="https://demos.themeselection.com/materio-html-django-admin-template/demo-1/static/img/products/facecream.png" alt="product-Wooden Chair" class="rounded-2">
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="text-nowrap text-heading fw-medium">Face cream</span>
-                                                <small class="text-truncate d-none d-sm-block">Gender:Women</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>$813</span>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-nowrap">
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="4"/>
-                                                <input type="hidden" name="operacao" value="+"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-success waves-effect waves-light">
-                                                    <span class="tf-icons ri-add-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                            <span class="px-1">2</span>
-                                            <form action="{% url 'gerir_carrinho' %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="id" value="4"/>
-                                                <input type="hidden" name="operacao" value="-"/>
-                                                <button type="submit" class="btn btn-xs btn-icon btn-label-danger waves-effect waves-light">
-                                                    <span class="tf-icons ri-subtract-line ri-22px"></span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>$1626</span>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <span>R${{ produto.preco | multiply:produto.quantidade }}</span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -197,19 +73,19 @@
                         <div class="order-calculations">
                             <div class="d-flex justify-content-start gap-4 mb-2">
                                 <span class="w-px-100 text-heading">Subtotal:</span>
-                                <h6 class="mb-0">R$5000,25</h6>
+                                <h6 class="mb-0">R${{ carrinho.subtotal }}</h6>
                             </div>
                             <div class="d-flex justify-content-start gap-4 mb-2">
-                                <span class="w-px-100 text-heading">Discount:</span>
-                                <h6 class="mb-0">R$00,00</h6>
+                                <span class="w-px-100 text-heading">Desconto:</span>
+                                <h6 class="mb-0">R${{ carrinho.desconto }}</h6>
                             </div>
                             <div class="d-flex justify-content-start gap-4 mb-2">
                                 <span class="w-px-100 text-heading">Tax:</span>
-                                <h6 class="mb-0">R$100,00</h6>
+                                <h6 class="mb-0">R$0,00</h6>
                             </div>
                             <div class="d-flex justify-content-start gap-4">
                                 <h6 class="w-px-100 mb-0">Total:</h6>
-                                <h6 class="mb-0">R$5100,25</h6>
+                                <h6 class="mb-0">R${{ carrinho.total }}</h6>
                             </div>
                         </div>
                     </div>
