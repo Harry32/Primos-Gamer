@@ -3,6 +3,7 @@
 {% block title %} - Carrinho {% endblock %}
 
 {% block content %}
+{% load operation_tags %}
     <div class="row">
         <div class="col-12 col-lg-8">
             <div class="card mb-6">
@@ -60,7 +61,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span>R$1682</span>
+                                        <span>R${{841 | multiply:2}}</span>
                                     </td>
                                 </tr>
                                 <tr>
