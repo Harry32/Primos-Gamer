@@ -126,8 +126,12 @@ class ProdutoView(TemplateView):
     def list(self, request):
         action = request.GET.get('acao', None) 
         
+        produtos = Produto.objects.all()
+
+        # Tarefa 21: Implemente seu código aqui.
+
         context = {
-            'produtos': Produto.objects.all(),
+            'produtos': produtos,
         }
 
         return render(request, 'list_produto.html', context)

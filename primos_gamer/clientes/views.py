@@ -76,7 +76,7 @@ class CarrinhoView(TemplateView):
 
 class GerirCarrinhoView(TemplateView):  
     def post(self, request, *args, **kwargs):
-        id = request.POST["id"]
+        id = int(request.POST["id"])
         operacao = request.POST["operacao"]
 
         carrinho = request.session.get("carrinho")
