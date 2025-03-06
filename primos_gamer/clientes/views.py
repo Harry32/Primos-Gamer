@@ -24,6 +24,10 @@ class CarrinhoView(TemplateView):
                 p["nome"] = produto.nome
                 p["tipo"] = produto.tipo.nome
 
+                carrinho["subtotal"] += p["preco"] * p["quantidade"]
+
+        carrinho["total"] = carrinho["subtotal"] - carrinho["desconto"]
+        
         context = {
             "carrinho": carrinho
         }
@@ -41,7 +45,20 @@ class CarrinhoView(TemplateView):
                 "produtos": []
             }
 
-        # Tarefa 6: Implemente seu código aqui.
+        if request.POST:
+            id = int(request.POST["id"])
+            existe = False
+
+            for p in carrinho["produtos"]:
+                if p["id"] == id:
+                    p["quantidade"] += 1
+                    existe = True
+
+            if not existe:
+                carrinho["produtos"].append({
+                    "id": id,
+                    "quantidade": 1
+                })
 
         request.session["carrinho"] = carrinho
 
