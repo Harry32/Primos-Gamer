@@ -23,11 +23,13 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <span class="badge rounded-pill bg-label-primary">{{ produto.tipo.nome }}</span>
                                         <p class="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
-                                            4.4
+                                            {% if produto.media_avaliacoes > 0 %}
+                                                <span>Avaliação: {{ produto.media_avaliacoes | floatformat:1 }}</span>
+                                            {% endif %}
                                             <span class="text-warning">
                                                 <i class="ri-star-s-fill ri-24px me-1"></i>
                                             </span>
-                                            <span class="fw-normal">(10)</span>
+                                            <span class="fw-normal">({{ produto.quantidade_avaliacoes }})</span>
                                         </p>
                                     </div>
                                     <a class="h5" href="{% url 'produto_detail' produto.id %}">{{ produto.nome }}</a>

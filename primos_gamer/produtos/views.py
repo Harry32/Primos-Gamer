@@ -128,7 +128,22 @@ class ProdutoView(TemplateView):
         
         produtos = Produto.objects.all()
 
-        # Tarefa 21: Implemente seu código aqui.
+         # Tarefa 21: Implemente seu código aqui.
+
+        for produto in produtos:
+            avaliacoes = produto.Avaliacoes.all()
+            quantidade_avaliacoes = produto.Avaliacoes.count()
+
+            if quantidade_avaliacoes > 0:
+                soma_nota = float(sum(avaliacao.nota for avaliacao in avaliacoes))
+                media_avaliacoes = soma_nota / quantidade_avaliacoes
+            else:
+                media_avaliacoes = None
+            
+            produto.media_avaliacoes = media_avaliacoes
+            produto.quantidade_avaliacoes = quantidade_avaliacoes
+
+       
 
         context = {
             'produtos': produtos,

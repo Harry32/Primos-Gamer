@@ -54,10 +54,12 @@ class CarrinhoView(TemplateView):
 
 
         if id in [p['id'] for p in carrinho['produtos']]:
+            carrinho['subtotal'] = 0
             for p in carrinho['produtos']:
                 if p['id'] == id:
                     p['quantidade'] += 1
-                carrinho['subtotal'] += p['quantidade'] * float(produto.preco)
+
+            carrinho['subtotal'] += p['quantidade'] * float(produto.preco)
         else:
             novo_produto = {
                 "id": id,
