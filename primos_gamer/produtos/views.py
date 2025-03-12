@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic import TemplateView
-from .models import Categoria, Produto
+from .models import Categoria, Produto, TipoProduto
 from .forms import CategoriaForm
 
 
@@ -127,8 +127,7 @@ class ProdutoView(TemplateView):
         action = request.GET.get('acao', None) 
         
         produtos = Produto.objects.all()
-
-         # Tarefa 21: Implemente seu código aqui.
+        # Tarefa 23: Implemente seu código aqui.
 
         for produto in produtos:
             avaliacoes = produto.Avaliacoes.all()
@@ -143,8 +142,6 @@ class ProdutoView(TemplateView):
             produto.media_avaliacoes = media_avaliacoes
             produto.quantidade_avaliacoes = quantidade_avaliacoes
 
-       
-
         context = {
             'produtos': produtos,
         }
@@ -157,6 +154,6 @@ class ProdutoView(TemplateView):
                 'produto': Produto.objects.get(id=id_produto)
             }
 
-            return render(request, 'detail.html', context)
+            return render(request, 'detail_product.html', context)
         except Categoria.DoesNotExist:
             raise Http404("Categoria não existe")

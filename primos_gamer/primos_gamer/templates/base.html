@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{% static 'assets/vendor/css/core-dark.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/vendor/css/theme-default-dark.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/vendor/css/datatables.bootstrap5.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/vendor/css/nouislider.css' %}" />
 
 
         {% comment %} <link rel="stylesheet" href="{% static 'css/demo.css' %}" /> {% endcomment %}
@@ -63,6 +64,10 @@
         <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
         <script src="{% static 'assets/vendor/js/menu2.js' %}"></script>
         <script src="{% static 'assets/vendor/js/main2.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/nouislider.js' %}"></script>
+        <script src="{% static 'js/custom-functions.js' %}"></script>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
+        {% block custom_scripts %}
+        {% endblock custom_scripts %}
     </body>
 </html>
