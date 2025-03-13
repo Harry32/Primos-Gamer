@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
@@ -90,6 +91,28 @@ class GerirCarrinhoView(TemplateView):
                 "total": 0.0,
                 "produtos": []
             }
+
+        produtos = carrinho["produtos"]  
+            
+        for produto in produtos:
+            
+            if produto["id"] == id:
+                        
+                if operacao == "+":
+                    produto["quantidade"] += 1
+
+                elif operacao == "-":
+                    
+                    if produto["quantidade"] > 1:
+                        produto["quantidade"] -= 1
+
+                    else:
+                        produtos.remove(produto)
+
+                      
+    
+        
+        carrinho["produtos"] = produtos
 
         # Tarefa 18: Implemente seu código aqui.
         
