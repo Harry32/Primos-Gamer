@@ -10,8 +10,38 @@
                 <h5 class="mb-0">Filtros</h5>
             </div>
             <div class="card-body mt-1">
-                {% comment %} Tarefa 23: Crie seus filtros aqui {% endcomment %}
+                <small class="text-light fw-medium">Tipos</small>
+                {% for tipo in tipos %}
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" value="" id="tipo_{{ tipo.id }}" />
+                        <label class="form-check-label" for="tipo_{{ tipo.id }}">
+                            {{ tipo.nome }}
+                        </label>
+                    </div>
+                {% endfor %}
+                
+                <small class="text-light fw-medium mt-10 d-block">Categoria</small>
+                {% for categoria in categorias %}
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" value="" id="categoria_{{ categoria.id }}" />
+                        <label class="form-check-label" for="categoria_{{ categoria.id }}">
+                            {{ categoria.nome }}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                <small class="text-light fw-medium mt-10 d-block mb-10">Valor</small>
+                <div id="slider-valor" class="mt-5"></div>
+                
+                <input type="hidden" id="filtro-valor-min" name="filtro-valor-min" value="0">
+                <input type="hidden" id="filtro-valor-max" name="filtro-valor-max" value="20000">
+
+                <button type="button" class="btn btn-outline-primary w-100 mt-5">Filtrar 
+                    <i class="ri-filter-2-line"></i>
+                </button>
             </div>
+
+            
         </div>
         <div class="card col-9 mb-6">
             <div class="card-header d-flex flex-wrap justify-content-between gap-4">
@@ -34,7 +64,7 @@
                                             <span class="badge rounded-pill bg-label-primary">{{ produto.tipo.nome }}</span>
                                             <p class="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
                                                 {% if produto.media_avaliacoes > 0 %}
-                                                    <span>Avaliação: {{ produto.media_avaliacoes | floatformat:1 }}</span>
+                                                    <span>{{ produto.media_avaliacoes | floatformat:1 }}</span>
                                                 {% endif %}
                                                 <span class="text-warning">
                                                     <i class="ri-star-s-fill ri-24px me-1"></i>
@@ -68,5 +98,5 @@
     
 {% endblock %}
 {% block custom_scripts %}
-    {% custom_scripts "slider-handles" "filtro-valor-min" "filtro-valor-max" 0 20000 100 %}
+    {% custom_scripts "slider-valor" "filtro-valor-min" "filtro-valor-max" 0 20000 100 %}
 {% endblock custom_scripts %}

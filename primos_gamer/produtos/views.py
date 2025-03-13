@@ -128,6 +128,10 @@ class ProdutoView(TemplateView):
         
         produtos = Produto.objects.all()
         # Tarefa 23: Implemente seu código aqui.
+        tipos= TipoProduto.objects.all()
+        categorias = Categoria.objects.all()
+
+        
 
         for produto in produtos:
             avaliacoes = produto.Avaliacoes.all()
@@ -144,6 +148,8 @@ class ProdutoView(TemplateView):
 
         context = {
             'produtos': produtos,
+            'tipos': tipos,
+            'categorias': categorias
         }
 
         return render(request, 'list_produto.html', context)
