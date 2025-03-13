@@ -8,9 +8,9 @@
             <div class="col-lg-8">
                 <div class="card mb-6">
                     <div class="card-header d-flex flex-wrap justify-content-between gap-4">
-                        <h5 class="mb-0">{{ produto.nome }}</h5>
+                        <h5 class="mb-0">Nome do Produto</h5>
                         <div class="d-flex align-items-center">
-                            <span class="badge bg-label-primary rounded-pill">{{ produto.tipo.nome }}</span>
+                            <span class="badge bg-label-primary rounded-pill">Tipo do Produto</span>
                             <i class="ri-share-forward-line ri-24px mx-4"></i>
                             <i class="ri-bookmark-line ri-24px"></i>
                         </div>
@@ -18,7 +18,14 @@
                     <div class="card-body mt-1">
                         <div class="card academy-content shadow-none border">
                             <div class="p-2">
-                                {% comment %} Tarefa 24: Implemente seu código aqui. {% endcomment %}
+                                <div class="rounded-2 text-center mb-3">
+                                    <a href="{% url 'produto_detail' produto.id %}">
+                                        <img class="img-fluid card-img" src="">
+                                    </a>
+                                </div>
+                                <div class="pt-3">
+                                    {% comment %} Tarefa 24: Implemente seu código aqui. {% endcomment %}
+                                </div>
                             </div>
                         </div>
                     </div>
