@@ -9,7 +9,7 @@ class Avaliacao(models.Model):
     nota = models.DecimalField(max_digits=3, decimal_places=1)
     comentario = models.CharField(max_length=250)
     cliente = models.ForeignKey('clientes.Cliente', on_delete=models.CASCADE)
-    produto = models.ForeignKey('Produto', on_delete=models.CASCADE)
+    produto = models.ForeignKey('Produto', related_name="Avaliacoes", on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return str(self.nota) + ' - ' + str(self.produto)
