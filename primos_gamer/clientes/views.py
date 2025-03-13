@@ -109,9 +109,6 @@ class GerirCarrinhoView(TemplateView):
                     else:
                         produtos.remove(produto)
 
-                      
-    
-        
         carrinho["produtos"] = produtos
 
         # Tarefa 18: Implemente seu código aqui.

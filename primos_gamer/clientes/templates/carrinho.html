@@ -44,7 +44,7 @@
                                             <div class="d-flex flex-nowrap">
                                                 <form action="{% url 'gerir_carrinho' %}" method="post">
                                                     {% csrf_token %}
-                                                    <input type="hidden" name="id" value="{{produto.id}}"/>
+                                                    <input type="hidden" name="id" value="{{ produto.id }}"/>
                                                     <input type="hidden" name="operacao" value="+"/>
                                                     <button type="submit" class="btn btn-xs btn-icon btn-label-success waves-effect waves-light">
                                                         <span class="tf-icons ri-add-line ri-22px"></span>
@@ -53,7 +53,7 @@
                                                 <span class="px-1">{{ produto.quantidade }}</span>
                                                 <form action="{% url 'gerir_carrinho' %}" method="post">
                                                     {% csrf_token %}
-                                                    <input type="hidden" name="id" value="{{produto.id}}"/>
+                                                    <input type="hidden" name="id" value="{{ produto.id }}"/>
                                                     <input type="hidden" name="operacao" value="-"/>
                                                     <button type="submit" class="btn btn-xs btn-icon btn-label-danger waves-effect waves-light">
                                                         <span class="tf-icons ri-subtract-line ri-22px"></span>
